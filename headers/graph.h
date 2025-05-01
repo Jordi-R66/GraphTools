@@ -4,11 +4,17 @@
 
 #ifdef __32_BITS__
 	#define VERTEX_TYPE uint16_t
+	#define ORDER_TYPE uint16_t
+	#define SIZE_TYPE uint32_t
 #elif defined(__64_BITS__)
 	#define VERTEX_TYPE uint32_t
+	#define ORDER_TYPE uint32_t
+	#define SIZE_TYPE uint64_t
 #endif
 
 typedef VERTEX_TYPE vertexId_t;
+typedef ORDER_TYPE gorder_t;
+typedef SIZE_TYPE gsize_t;
 
 typedef struct Vertex {
 	vertexId_t VertexUid;
