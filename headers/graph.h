@@ -14,7 +14,7 @@ typedef struct Graph {
 	List Vertices;
 	List Edges;
 
-	// From Right to Left
+	// From Rightmost bit to Leftmost
 	// Bit 1 : Directed
 	// Bit 2 : Weighted
 	bool properties : 2;
