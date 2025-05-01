@@ -28,5 +28,5 @@ typedef struct Graph {
 #define WEIGHTED_BIT 2
 
 #define GRAPH_SIZE sizeof(Graph);
-#define IS_DIRECTED(graph) GET_BIT(graph.properties, DIRECTED_BIT, 8)
-#define IS_WEIGHTED(graph) GET_BIT(graph.properties, WEIGHTED_BIT, 8)
+#define IS_DIRECTED(graph) GET_BIT(graph.properties, DIRECTED_BIT)
+#define IS_WEIGHTED(graph) GET_BIT(graph.properties, WEIGHTED_BIT)
