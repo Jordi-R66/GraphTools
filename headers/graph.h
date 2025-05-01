@@ -21,12 +21,12 @@ typedef struct Graph {
 	 * 
 	 * Bit 2 : Weighted
 	 */
-	bool properties : 2;
+	uint8_t properties : 2;
 } Graph;
 
 #define DIRECTED_BIT 1
 #define WEIGHTED_BIT 2
 
 #define GRAPH_SIZE sizeof(Graph);
-#define IS_DIRECTED(graph) ((graph.properties << (BOOL_BITS - DIRECTED_BIT)) >> (BOOL_BITS - 1))
-#define IS_WEIGHTED(graph) ((graph.properties << (BOOL_BITS - WEIGHTED_BIT)) >> (BOOL_BITS - 1))
+#define IS_DIRECTED(graph) GET_BIT(graph.properties, DIRECTED_BIT, 8)
+#define IS_WEIGHTED(graph) GET_BIT(graph.properties, WEIGHTED_BIT, 8)
