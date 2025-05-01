@@ -14,9 +14,12 @@ typedef struct Graph {
 	List Vertices;
 	List Edges;
 
-	// From Rightmost bit to Leftmost
-	// Bit 1 : Directed
-	// Bit 2 : Weighted
+	/** @brief Set of booleans describing some properties
+	 * From Rightmost bit to Leftmost
+	 * 
+	 * Bit 1 : Directed
+	 * Bit 2 : Weighted
+	 */
 	bool properties : 2;
 } Graph;
 
