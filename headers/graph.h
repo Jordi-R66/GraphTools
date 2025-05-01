@@ -27,6 +27,19 @@ typedef struct Graph {
 #define DIRECTED_BIT 1
 #define WEIGHTED_BIT 2
 
-#define GRAPH_SIZE sizeof(Graph);
+#define GRAPH_SIZE sizeof(Graph)
+#define VERTEX_SIZE sizeof(Vertex)
+#define EDGE_SIZE sizeof(Edge)
+
+#define MAX_DIRECTED_EDGES(Vertices) (Vertices * (Vertices - 1))
+#define MAX_UNDIRECTED_EDGES(Vertices) (MAX_DIRECTED_EDGES(Verices) >> 1)
+
 #define IS_DIRECTED(graph) GET_BIT(graph.properties, DIRECTED_BIT)
 #define IS_WEIGHTED(graph) GET_BIT(graph.properties, WEIGHTED_BIT)
+
+/**
+ * @brief Create a Graph object out of nowhere
+ * 
+ * @return Graph 
+ */
+Graph createGraph();
