@@ -27,5 +27,5 @@ typedef struct Graph {
 #define WEIGHTED_BIT 2
 
 #define GRAPH_SIZE sizeof(Graph);
-#define IS_DIRECTED(graph) ((graph.properties << (BOOL_BITS - DIRECTED_BIT)) >> (BOOL_BITS - DIRECTED_BIT))
-#define IS_WEIGHTED(graph) ((graph.properties << (BOOL_BITS - WEIGHTED_BIT)) >> (BOOL_BITS - WEIGHTED_BIT))
+#define IS_DIRECTED(graph) ((graph.properties << (BOOL_BITS - DIRECTED_BIT)) >> (BOOL_BITS - 1))
+#define IS_WEIGHTED(graph) ((graph.properties << (BOOL_BITS - WEIGHTED_BIT)) >> (BOOL_BITS - 1))
