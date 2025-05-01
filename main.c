@@ -5,7 +5,7 @@
 void main() {
 	Graph graph;
 
-	graph.properties = 3;
+	graph.properties = 1;
 
-	
+	printf("DIRECTED : %u\nWEIGHTED : %u\n", IS_DIRECTED(graph), IS_WEIGHTED(graph));
 }
