@@ -2,12 +2,20 @@
 
 #include "common.h"
 
+#ifdef __32_BITS__
+	#define VERTEX_TYPE uint16_t
+#elif defined(__64_BITS__)
+	#define VERTEX_TYPE uint32_t
+#endif
+
+typedef VERTEX_TYPE vertexId_t;
+
 typedef struct Vertex {
-	size_t VertexUid;
+	vertexId_t VertexUid;
 } Vertex;
 
 typedef struct Edge {
-	size_t VertexA, VertexB;
+	vertexId_t VertexA, VertexB;
 } Edge;
 
 typedef struct Graph {
