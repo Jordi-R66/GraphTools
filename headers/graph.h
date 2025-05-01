@@ -45,9 +45,4 @@ typedef struct Graph {
 #define IS_DIRECTED(graph) GET_BIT(graph.properties, DIRECTED_BIT)
 #define IS_WEIGHTED(graph) GET_BIT(graph.properties, WEIGHTED_BIT)
 
-/**
- * @brief Create a Graph object out of nowhere
- * 
- * @return Graph 
- */
-Graph createGraph();
+void initGraph(Graph* graph);
