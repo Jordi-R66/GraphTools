@@ -2,6 +2,14 @@
 
 #include "common.h"
 
+typedef struct Vertex {
+	size_t VertexUid;
+} Vertex;
+
+typedef struct Edge {
+	size_t VertexA, VertexB;
+} Edge;
+
 typedef struct Graph {
 	List Vertices;
 	List Edges;
