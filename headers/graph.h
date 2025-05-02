@@ -60,7 +60,7 @@ typedef struct Graph {
 #define VERTEX_SIZE sizeof(Vertex)
 #define EDGE_SIZE sizeof(Edge)
 
-#define MAX_DIRECTED_EDGES(Vertices) (Vertices * (Vertices - 1))
+#define MAX_DIRECTED_EDGES(Vertices) (gsize_t)((gsize_t)Vertices * ((gsize_t)Vertices - 1))
 #define MAX_UNDIRECTED_EDGES(Vertices) (MAX_DIRECTED_EDGES(Vertices) >> 1)
 
 #define IS_DIRECTED(graph) GET_BIT(graph.properties, DIRECTED_BIT)
