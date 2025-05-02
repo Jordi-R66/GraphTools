@@ -11,7 +11,7 @@
 	#define VERTEX_DIR_LIMIT 21845
 	#define EDGE_UNDIR_LIMIT 477204171
 	#define VERTEX_UNDIR_LIMIT 30894
-	#elif defined(__64_BITS__)
+#elif defined(__64_BITS__)
 	#define VERTEX_TYPE uint32_t
 	#define ORDER_TYPE uint32_t
 	#define SIZE_TYPE uint64_t
@@ -20,7 +20,7 @@
 	#define VERTEX_DIR_LIMIT 1191209601
 	#define EDGE_UNDIR_LIMIT 1418980312060338378
 	#define VERTEX_UNDIR_LIMIT 1684624773
-	#endif
+#endif
 
 typedef VERTEX_TYPE vertexId_t;
 typedef ORDER_TYPE gorder_t;
