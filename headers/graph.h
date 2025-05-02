@@ -67,4 +67,5 @@ typedef struct Graph {
 #define IS_WEIGHTED(graph) GET_BIT(graph.properties, WEIGHTED_BIT)
 
 void initGraph(Graph* graph);
-void initVertices(Graph* graph, gsize_t maxOrder);
+void initVertices(Graph* graph, gorder_t maxOrder);
+void initEdges(Graph* graph, gsize_t maxSize);
