@@ -35,7 +35,7 @@ typedef struct Edge {
 	Vertex VertexA;
 	Vertex VertexB;
 	float weight;
-	bool biDir;
+	bool directed;
 } Edge;
 
 typedef struct Graph {
@@ -63,8 +63,8 @@ typedef struct Graph {
 #define MAX_DIRECTED_EDGES(Vertices) (gsize_t)((gsize_t)Vertices * ((gsize_t)Vertices - 1))
 #define MAX_UNDIRECTED_EDGES(Vertices) (MAX_DIRECTED_EDGES(Vertices) >> 1)
 
-#define IS_DIRECTED(graph) GET_BIT(graph.properties, DIRECTED_BIT)
-#define IS_WEIGHTED(graph) GET_BIT(graph.properties, WEIGHTED_BIT)
+#define IS_DIRECTED(graph) GET_BIT(graph->properties, DIRECTED_BIT)
+#define IS_WEIGHTED(graph) GET_BIT(graph->properties, WEIGHTED_BIT)
 
 void initGraph(Graph* graph);
 void initVertices(Graph* graph, gorder_t maxOrder);
