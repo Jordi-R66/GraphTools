@@ -23,3 +23,19 @@ void initFullGraph(Graph* graph, gorder_t order, bool directed, bool weighted) {
 	graph->properties = (directed) + (weighted << (WEIGHTED_BIT - 1));
 }
 
+void fillGraph(Graph* graph) {
+	bool directed = IS_DIRECTED(graph);
+
+	for (gorder_t i=0; i < graph->Edges.capacity; i++) {
+		Vertex vertexA = {i};
+		for (gorder_t j=0; j < graph->Edges.capacity; j++) {
+			if (i != j) {
+				Vertex vertexB = {j};
+
+				Edge edge = {i, j, 1.f, directed};
+
+				addElement(&graph->Edges, &edge);
+			}
+		}
+	}
+}
