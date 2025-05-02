@@ -35,6 +35,13 @@ void fillGraph(Graph* graph) {
 				Edge edge = {i, j, 1.f, directed};
 
 				addElement(&graph->Edges, &edge);
+
+				if (directed) {
+					edge.VertexA = (Vertex){j};
+					edge.VertexB = (Vertex){i};
+
+					addElement(&graph->Edges, &edge);
+				}
 			}
 		}
 	}
