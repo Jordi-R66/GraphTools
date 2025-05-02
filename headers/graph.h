@@ -6,22 +6,36 @@
 	#define VERTEX_TYPE uint16_t
 	#define ORDER_TYPE uint16_t
 	#define SIZE_TYPE uint32_t
-#elif defined(__64_BITS__)
+
+	#define EDGE_DIR_LIMIT 477182180
+	#define VERTEX_DIR_LIMIT 21845
+	#define EDGE_UNDIR_LIMIT 477204171
+	#define VERTEX_UNDIR_LIMIT 30894
+	#elif defined(__64_BITS__)
 	#define VERTEX_TYPE uint32_t
 	#define ORDER_TYPE uint32_t
 	#define SIZE_TYPE uint64_t
-#endif
+
+	#define EDGE_DIR_LIMIT 1418980312323369600
+	#define VERTEX_DIR_LIMIT 1191209601
+	#define EDGE_UNDIR_LIMIT 1418980312060338378
+	#define VERTEX_UNDIR_LIMIT 1684624773
+	#endif
 
 typedef VERTEX_TYPE vertexId_t;
 typedef ORDER_TYPE gorder_t;
 typedef SIZE_TYPE gsize_t;
 
+#pragma pack(1)
 typedef struct Vertex {
 	vertexId_t VertexUid;
 } Vertex;
 
 typedef struct Edge {
-	vertexId_t VertexA, VertexB;
+	Vertex VertexA;
+	Vertex VertexB;
+	float weight;
+	bool biDir;
 } Edge;
 
 typedef struct Graph {
@@ -37,6 +51,7 @@ typedef struct Graph {
 	 */
 	uint8_t properties : 2;
 } Graph;
+#pragma pack()
 
 #define DIRECTED_BIT 1
 #define WEIGHTED_BIT 2
@@ -46,7 +61,7 @@ typedef struct Graph {
 #define EDGE_SIZE sizeof(Edge)
 
 #define MAX_DIRECTED_EDGES(Vertices) (Vertices * (Vertices - 1))
-#define MAX_UNDIRECTED_EDGES(Vertices) (MAX_DIRECTED_EDGES(Verices) >> 1)
+#define MAX_UNDIRECTED_EDGES(Vertices) (MAX_DIRECTED_EDGES(Vertices) >> 1)
 
 #define IS_DIRECTED(graph) GET_BIT(graph.properties, DIRECTED_BIT)
 #define IS_WEIGHTED(graph) GET_BIT(graph.properties, WEIGHTED_BIT)
