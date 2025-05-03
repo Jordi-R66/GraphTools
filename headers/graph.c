@@ -39,6 +39,8 @@ void fillGraph(Graph* graph) {
 	for (gorder_t i=0; i < (gorder_t)graph->Vertices.capacity; i++) {
 		Vertex vertexA = {i};
 
+		addElement(&graph->Vertices, &vertexA);
+
 		for (gorder_t j=0; j < (gorder_t)(graph->Vertices.capacity); j++) {
 			if (i != j) {
 				Vertex vertexB = {j};
@@ -51,7 +53,7 @@ void fillGraph(Graph* graph) {
 
 				bool goodToGo = (validAB && validBA) || (validAB && directed);
 
-				//printf("i = %u | j = %u | %s\n", a.A.VertexUid, a.B.VertexUid, goodToGo ? "True" : "False");
+				printf("i = %u | j = %u | %s\n", a.A.VertexUid, a.B.VertexUid, goodToGo ? "True" : "False");
 				//printf("(validAB && validBA) || (validAB && directed) = ( %u && %u) || ( %u && %u) = %u\n\n", validAB, validBA, validAB, directed, goodToGo);
 
 				if (goodToGo) {
@@ -67,6 +69,7 @@ void fillGraph(Graph* graph) {
 	}
 
 	FILE* fp = fopen("dumpEdges.hex", "w");
+	fwrite(graph->Vertices.elements, graph->Vertices.elementSize, graph->Vertices.capacity, fp);
 	fwrite(edges.elements, edges.elementSize, edges.capacity, fp);
 	fclose(fp);
 
