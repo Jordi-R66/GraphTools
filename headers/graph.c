@@ -1,5 +1,9 @@
 #include "graph.h"
 
+typedef struct ReducedEdge {
+	Vertex A, B;
+} ReducedEdge;
+
 void initGraph(Graph* graph) {
 	memset(graph, 0, GRAPH_SIZE);
 }
@@ -26,25 +30,47 @@ void initFullGraph(Graph* graph, gorder_t order, bool directed, bool weighted) {
 void fillGraph(Graph* graph) {
 	bool directed = IS_DIRECTED(graph);
 
-	for (gorder_t i=0; i < graph->Edges.capacity; i++) {
+	List edges;
+
+	initializeList(&edges, graph->Edges.capacity, sizeof(ReducedEdge));
+
+	gsize_t compteur = 0;
+
+	for (gorder_t i=0; i < (gorder_t)graph->Edges.capacity; i++) {
 		Vertex vertexA = {i};
-		for (gorder_t j=0; j < graph->Edges.capacity; j++) {
+
+		for (gorder_t j=0; j < (gorder_t)graph->Edges.capacity; j++) {
 			if (i != j) {
 				Vertex vertexB = {j};
 
-				Edge edge = {i, j, 1.f, directed};
+				ReducedEdge a = {vertexA, vertexB};
+				ReducedEdge b = {vertexB, vertexA};
 
-				addElement(&graph->Edges, &edge);
+				bool validAB = !contains(&edges, &a);
+				bool validBA = !contains(&edges, &b);
 
-				if (directed) {
-					edge.VertexA = (Vertex){j};
-					edge.VertexB = (Vertex){i};
+				bool goodToGo = (validAB && validBA) || (validAB && directed);
+
+				printf("i = %u | j = %u | %s\n", a.A.VertexUid, a.B.VertexUid, goodToGo ? "True" : "False");
+				printf("(validAB && validBA) || (validAB && directed) = ( %u && %u) || ( %u && %u) = %u\n\n", validAB, validBA, validAB, directed, goodToGo);
+
+				if (goodToGo) {
+					Edge edge = {vertexA, vertexB, 1.f, directed};
 
 					addElement(&graph->Edges, &edge);
+					addElement(&edges, &a);
+					compteur++;
+					//printf("Compteur : %lu\n", compteur);
 				}
 			}
 		}
 	}
+
+	FILE* fp = fopen("dumpEdges.hex", "w");
+	fwrite(edges.elements, edges.elementSize, edges.capacity, fp);
+	fclose(fp);
+
+	freeList(&edges);
 }
 
 void deallocGraph(Graph* graph) {

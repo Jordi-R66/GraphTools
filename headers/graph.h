@@ -3,18 +3,18 @@
 #include "common.h"
 
 #ifdef __32_BITS__
-	#define VERTEX_TYPE uint16_t
-	#define ORDER_TYPE uint16_t
-	#define SIZE_TYPE uint32_t
+	#define VERTEX_TYPE uint16
+	#define ORDER_TYPE uint16
+	#define SIZE_TYPE uint32
 
 	#define EDGE_DIR_LIMIT 477182180
 	#define VERTEX_DIR_LIMIT 21845
 	#define EDGE_UNDIR_LIMIT 477204171
 	#define VERTEX_UNDIR_LIMIT 30894
 #elif defined(__64_BITS__)
-	#define VERTEX_TYPE uint32_t
-	#define ORDER_TYPE uint32_t
-	#define SIZE_TYPE uint64_t
+	#define VERTEX_TYPE uint32
+	#define ORDER_TYPE uint32
+	#define SIZE_TYPE uint64
 
 	#define EDGE_DIR_LIMIT 1418980312323369600
 	#define VERTEX_DIR_LIMIT 1191209601
@@ -49,7 +49,7 @@ typedef struct Graph {
 	 * 
 	 * Bit 2 : Weighted
 	 */
-	uint8_t properties : 2;
+	uint8 properties : 2;
 } Graph;
 #pragma pack()
 
