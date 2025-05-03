@@ -10,7 +10,7 @@ mkdir $OUTPUT_DIR
 
 EXEC="GraphTools.elf"
 
-ARGS="-Wall -Wno-main -s -Oz -std=gnu17 -m64"
+ARGS="-Wall -masm=intel -Wno-main -g -O0 -std=gnu17 -m64"
 #ARGS="-Wall -Wno-unused-variable -O3 -std=c17 -m64 -march=x86-64 -flto"
 
 $COMPILER $ARGS $SOURCES -o $OUTPUT_DIR/$EXEC
