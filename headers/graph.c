@@ -30,7 +30,7 @@ void initFullGraph(Graph* graph, gorder_t order, bool directed, bool weighted) {
 void fillGraph(Graph* graph) {
 	bool directed = IS_DIRECTED(graph);
 
-	List edges;
+	List edges = {.initialized=false};
 
 	initializeList(&edges, graph->Edges.capacity, sizeof(ReducedEdge));
 
