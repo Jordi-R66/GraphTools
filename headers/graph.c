@@ -41,7 +41,7 @@ void fillGraph(Graph* graph) {
 
 		addElement(&graph->Vertices, &vertexA);
 
-		for (gorder_t j=0; j < (gorder_t)(graph->Vertices.capacity); j++) {
+		for (gorder_t j=i+1; j < (gorder_t)(graph->Vertices.capacity); j++) {
 			if (i != j) {
 				Vertex vertexB = {j};
 
