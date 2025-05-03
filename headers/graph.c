@@ -36,10 +36,10 @@ void fillGraph(Graph* graph) {
 
 	gsize_t compteur = 0;
 
-	for (gorder_t i=0; i < (gorder_t)graph->Edges.capacity; i++) {
+	for (gorder_t i=0; i < (gorder_t)graph->Vertices.capacity; i++) {
 		Vertex vertexA = {i};
 
-		for (gorder_t j=0; j < (gorder_t)graph->Edges.capacity; j++) {
+		for (gorder_t j=0; j < (gorder_t)(graph->Vertices.capacity); j++) {
 			if (i != j) {
 				Vertex vertexB = {j};
 
@@ -51,8 +51,8 @@ void fillGraph(Graph* graph) {
 
 				bool goodToGo = (validAB && validBA) || (validAB && directed);
 
-				printf("i = %u | j = %u | %s\n", a.A.VertexUid, a.B.VertexUid, goodToGo ? "True" : "False");
-				printf("(validAB && validBA) || (validAB && directed) = ( %u && %u) || ( %u && %u) = %u\n\n", validAB, validBA, validAB, directed, goodToGo);
+				//printf("i = %u | j = %u | %s\n", a.A.VertexUid, a.B.VertexUid, goodToGo ? "True" : "False");
+				//printf("(validAB && validBA) || (validAB && directed) = ( %u && %u) || ( %u && %u) = %u\n\n", validAB, validBA, validAB, directed, goodToGo);
 
 				if (goodToGo) {
 					Edge edge = {vertexA, vertexB, 1.f, directed};
