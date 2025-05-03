@@ -46,3 +46,9 @@ void fillGraph(Graph* graph) {
 		}
 	}
 }
+
+void deallocGraph(Graph* graph) {
+	freeList(&graph->Edges);
+	freeList(&graph->Vertices);
+	memset(graph, 0, GRAPH_SIZE);
+}

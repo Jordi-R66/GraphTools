@@ -71,3 +71,4 @@ void initVertices(Graph* graph, gorder_t maxOrder);
 void initEdges(Graph* graph, gsize_t maxSize);
 void initFullGraph(Graph* graph, gorder_t order, bool directed, bool weighted);
 void fillGraph(Graph* graph);
+void deallocGraph(Graph* graph);
