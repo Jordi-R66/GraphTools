@@ -68,10 +68,10 @@ void fillGraph(Graph* graph) {
 		}
 	}
 
-	FILE* fp = fopen("dumpEdges.hex", "w");
+	/*FILE* fp = fopen("dumpEdges.hex", "w");
 	fwrite(graph->Vertices.elements, graph->Vertices.elementSize, graph->Vertices.capacity, fp);
 	fwrite(edges.elements, edges.elementSize, edges.capacity, fp);
-	fclose(fp);
+	fclose(fp);*/
 
 	freeList(&edges);
 }
