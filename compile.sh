@@ -2,7 +2,7 @@
 clear
 COMPILER="gcc"
 
-SOURCES="main.c libs/myOwnCLib/lists/list.c libs/myOwnCLib/bits/bits.c headers/*.c"
+SOURCES="main.c libs/myOwnCLib/memory/*.c libs/myOwnCLib/lists/list.c headers/*.c"
 
 OUTPUT_DIR="output"
 
