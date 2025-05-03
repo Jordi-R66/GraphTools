@@ -53,7 +53,7 @@ void fillGraph(Graph* graph) {
 
 				bool goodToGo = (validAB && validBA) || (validAB && directed);
 
-				printf("i = %u | j = %u | %s\n", a.A.VertexUid, a.B.VertexUid, goodToGo ? "True" : "False");
+				//printf("i = %u | j = %u | %s\n", a.A.VertexUid, a.B.VertexUid, (j < (gorder_t)(graph->Vertices.capacity)) ? "True" : "False");
 				//printf("(validAB && validBA) || (validAB && directed) = ( %u && %u) || ( %u && %u) = %u\n\n", validAB, validBA, validAB, directed, goodToGo);
 
 				if (goodToGo) {
