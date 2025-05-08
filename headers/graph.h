@@ -32,8 +32,8 @@ typedef struct Vertex {
 } Vertex;
 
 typedef struct Edge {
-	Vertex VertexA;
-	Vertex VertexB;
+	Vertex* VertexA;
+	Vertex* VertexB;
 	float weight;
 	bool directed;
 } Edge;
@@ -72,3 +72,5 @@ void initEdges(Graph* graph, gsize_t maxSize);
 void initFullGraph(Graph* graph, gorder_t order, bool directed, bool weighted);
 void fillGraph(Graph* graph);
 void deallocGraph(Graph* graph);
+
+List degreeSequence(Graph* graph);

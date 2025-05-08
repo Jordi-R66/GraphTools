@@ -51,10 +51,18 @@ void fillGraph(Graph* graph) {
 				bool validAB = !contains(&edges, &a);
 				bool validBA = !contains(&edges, &b);
 
+				Vertex *aPtr, *bPtr;
+
 				bool goodToGo = (validAB && validBA) || (validAB && directed);
 
 				if (goodToGo) {
-					Edge edge = {vertexA, vertexB, 1.f, directed};
+					aPtr = (Vertex*)calloc(1, VERTEX_SIZE);
+					bPtr = (Vertex*)calloc(1, VERTEX_SIZE);
+
+					*aPtr = vertexA;
+					*bPtr = vertexB;
+
+					Edge edge = {aPtr, bPtr, 1.f, directed};
 
 					addElement(&graph->Edges, &edge);
 					addElement(&edges, &a);
@@ -71,4 +79,34 @@ void deallocGraph(Graph* graph) {
 	freeList(&graph->Edges);
 	freeList(&graph->Vertices);
 	memset(graph, 0, GRAPH_SIZE);
+}
+
+List degreeSequence(Graph* graph) {
+	List output;
+
+	initializeList(&output, graph->Vertices.n_elements, sizeof(gorder_t));
+
+	List* edges = &graph->Edges;
+	List* vertices = &graph->Vertices;
+	Edge* edge;
+
+	for (gorder_t i = 0; i < vertices->n_elements; i++) {
+		Vertex* ref = (Vertex*)getElement(vertices, i);
+
+		gorder_t degree = 0;
+
+		for (gsize_t j = 0; j < edges->n_elements; j++) {
+			edge = (Edge*)getElement(edges, j);
+
+			bool isA = equalMemory(edge->VertexA, ref, VERTEX_SIZE), isB = equalMemory(edge->VertexB, ref, VERTEX_SIZE);
+
+			if ((isA && !isB) || (!(edge->directed || isA) && isB)) {
+				degree++;
+			}
+		}
+
+		addElement(&output, &degree);
+	}
+
+	return output;
 }
