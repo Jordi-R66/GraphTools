@@ -5,12 +5,14 @@
 void main() {
 	Graph graph;
 
-	initFullGraph(&graph, 8, true, false);
+	initFullGraph(&graph, 128, true, false);
 	fillGraph(&graph);
 
-	List E = graph.Edges;
+	List degSeq = degreeSequence(&graph);
 
-	printf("M = %lu\n", E.capacity);
+	for (SizeT i = 0; i < degSeq.n_elements; i++) {
+		printf("%u\n", *(gorder_t*)getElement(&degSeq, i));
+	}
 
 	deallocGraph(&graph);
 }
