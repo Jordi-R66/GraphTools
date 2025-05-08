@@ -5,7 +5,7 @@
 void main() {
 	Graph graph;
 
-	initFullGraph(&graph, 256, false, false);
+	initFullGraph(&graph, 8, true, false);
 	fillGraph(&graph);
 
 	List E = graph.Edges;
