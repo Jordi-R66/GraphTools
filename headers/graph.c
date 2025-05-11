@@ -1,5 +1,7 @@
 #include "graph.h"
 
+#include "../libs/myOwnCLib/memory/memfuncs.h"
+
 typedef struct ReducedEdge {
 	Vertex A, B;
 } ReducedEdge;
