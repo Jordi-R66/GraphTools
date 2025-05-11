@@ -14,3 +14,7 @@ ARGS="-Wall -masm=intel -Wno-main -s -O3 -std=gnu17 -m64"
 #ARGS="-Wall -Wno-unused-variable -O3 -std=c17 -m64 -march=x86-64 -flto"
 
 $COMPILER $ARGS $SOURCES -o $OUTPUT_DIR/$EXEC
+$COMPILER $ARGS $SOURCES -S
+
+mkdir asm
+mv *.s asm/
