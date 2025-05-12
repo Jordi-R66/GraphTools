@@ -110,7 +110,7 @@ List degreeSequence(Graph* graph) {
 		addElement(&output, &degree);
 	}
 
-	orderList(&output);
+	sortList(&output);
 
 	return output;
 }
