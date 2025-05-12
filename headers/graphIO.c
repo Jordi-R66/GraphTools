@@ -143,7 +143,8 @@ void LoadEdgesFromTSV(string filename, Graph* graph, FileType fileType) {
 
 				case B_ID:
 					edge.VertexB = strtoll(buffer, &endptr, 10);
-					break;
+					edge.VertexB = (Vertex*)calloc(1, VERTEX_SIZE);
+					*edge.VertexB = (Vertex){strtoll(buffer, &endptr, 10)};
 
 				case TYPE:
 					edge.directed = strtol(buffer, &endptr, 10) == 2 ? true : false;
