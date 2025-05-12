@@ -174,3 +174,17 @@ void LoadEdgesFromTSV(string filename, Graph* graph, FileType fileType) {
 
 	shrinkToFit(&graph->Edges);
 }
+
+Graph parseFile(string VerticesFile, string EdgesFile, FileType fileType) {
+	Graph graph;
+
+	char* endptr;
+
+	if (fileType == CSV || fileType == TSV) {
+		initGraph(&graph);
+		LoadVerticesFromTSV(VerticesFile, &graph, fileType);
+		LoadEdgesFromTSV(EdgesFile, &graph, fileType);
+	}
+
+	return graph;
+}
