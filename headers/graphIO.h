@@ -10,3 +10,5 @@ typedef enum FileType {
 } FileType;
 
 SizeT countLines(string filename);
+
+Graph parseFile(string VerticesFile, string EdgesFile, FileType fileType);
