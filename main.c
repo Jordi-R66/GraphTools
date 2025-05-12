@@ -1,18 +1,27 @@
 #include "headers/graph.h"
+#include "headers/graphIO.h"
 
 #include <stdio.h>
 
 void main() {
-	Graph graph;
+	Graph graph = parseFile("France_s.tsv", "France_l.tsv", TSV);
 
-	initFullGraph(&graph, 128, true, false);
-	fillGraph(&graph);
-
+	printf("n = %zu\nm = %zu\n", graph.Vertices.n_elements, graph.Edges.n_elements);
 	List degSeq = degreeSequence(&graph);
 
+	printf("|S| = %zu\n", degSeq.n_elements);
+
+	printf("S = (");
+
 	for (SizeT i = 0; i < degSeq.n_elements; i++) {
-		printf("%u\n", *(gorder_t*)getElement(&degSeq, i));
+		printf("%u", *(gorder_t*)getElement(&degSeq, i));
+
+		if (i < (degSeq.n_elements - 1)) {
+			printf(",");
+		}
 	}
+
+	printf(")\n");
 
 	deallocGraph(&graph);
 }
