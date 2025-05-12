@@ -43,7 +43,7 @@ typedef struct Graph {
 	List Edges;
 
 	/** @brief Set of booleans describing some properties
-	 * From Rightmost bit to Leftmost
+	 * From LSB to MSB
 	 * 
 	 * Bit 1 : Directed
 	 * 
