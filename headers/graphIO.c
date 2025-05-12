@@ -95,3 +95,82 @@ void LoadVerticesFromTSV(string filename, Graph* graph, FileType fileType) {
 
 	shrinkToFit(&graph->Vertices);
 }
+
+void LoadEdgesFromTSV(string filename, Graph* graph, FileType fileType) {
+	char* endptr;
+
+	size_t n_entries = CountLinesInFile(filename);
+
+	char buffer[128];
+	memset(buffer, 0, 128);
+
+	if (n_entries == 0) {
+		return;
+	}
+
+	FILE* fp = fopen(filename, READONLY_MODE);
+
+	initEdges(graph, (gsize_t)n_entries);
+
+	char c = 0;
+
+	Edge edge;
+
+	uint8_t currentEntry = 0;
+	uint8_t currentField = 0;
+	uint8_t fieldLength = 0;
+
+	const char field_sep = fileType == CSV ? ',' : '\t';
+	bool canLoad = false;
+
+	while (c != EOF) {
+		c = fgetc(fp);
+
+		if (c == EOF) {
+			break;
+		}
+
+		if ((c != field_sep) && (c != '\n')) {
+			buffer[fieldLength++] = c;
+		} else {
+			switch (currentField) {
+				case A_ID:
+					memset(&edge, 0, EDGE_SIZE);
+
+					edge.VertexA = strtoll(buffer, &endptr, 10);
+					canLoad = false;
+					break;
+
+				case B_ID:
+					edge.VertexB = strtoll(buffer, &endptr, 10);
+					break;
+
+				case TYPE:
+					edge.directed = strtol(buffer, &endptr, 10) == 2 ? true : false;
+					canLoad = true;
+					break;
+
+				default:
+					break;
+			}
+
+			if (canLoad) {
+				addElement(&graph->Edges, &edge);
+			}
+
+			memset(buffer, 0, 128);
+			fieldLength = 0;
+
+			if (c == '\n') {
+				currentField = 0;
+				currentEntry++;
+			} else {
+				currentField++;
+			}
+		}
+	}
+
+	fclose(fp);
+
+	shrinkToFit(&graph->Edges);
+}
