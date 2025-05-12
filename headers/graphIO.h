@@ -9,3 +9,4 @@ typedef enum FileType {
 	TSV = 2
 } FileType;
 
+SizeT countLines(string filename);
