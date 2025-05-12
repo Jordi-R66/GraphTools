@@ -38,7 +38,6 @@ void LoadVerticesFromTSV(string filename, Graph* graph, FileType fileType) {
 
 	initVertices(graph, (gorder_t)n_entries);
 
-	uint8_t colNumber = 0;
 	vertexId_t currentEntry = 0;
 
 	vertexId_t id;
@@ -99,7 +98,7 @@ void LoadVerticesFromTSV(string filename, Graph* graph, FileType fileType) {
 void LoadEdgesFromTSV(string filename, Graph* graph, FileType fileType) {
 	char* endptr;
 
-	size_t n_entries = CountLinesInFile(filename);
+	size_t n_entries = countLines(filename);
 
 	char buffer[128];
 	memset(buffer, 0, 128);
@@ -137,14 +136,15 @@ void LoadEdgesFromTSV(string filename, Graph* graph, FileType fileType) {
 				case A_ID:
 					memset(&edge, 0, EDGE_SIZE);
 
-					edge.VertexA = strtoll(buffer, &endptr, 10);
+					edge.VertexA = (Vertex*)calloc(1, VERTEX_SIZE);
+					*edge.VertexA = (Vertex){strtoll(buffer, &endptr, 10)};
 					canLoad = false;
 					break;
 
 				case B_ID:
-					edge.VertexB = strtoll(buffer, &endptr, 10);
 					edge.VertexB = (Vertex*)calloc(1, VERTEX_SIZE);
 					*edge.VertexB = (Vertex){strtoll(buffer, &endptr, 10)};
+					break;
 
 				case TYPE:
 					edge.directed = strtol(buffer, &endptr, 10) == 2 ? true : false;
@@ -178,8 +178,6 @@ void LoadEdgesFromTSV(string filename, Graph* graph, FileType fileType) {
 
 Graph parseFile(string VerticesFile, string EdgesFile, FileType fileType) {
 	Graph graph;
-
-	char* endptr;
 
 	if (fileType == CSV || fileType == TSV) {
 		initGraph(&graph);
