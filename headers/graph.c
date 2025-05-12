@@ -78,6 +78,13 @@ void fillGraph(Graph* graph) {
 }
 
 void deallocGraph(Graph* graph) {
+	for (SizeT i=0; i < &graph->Edges.n_elements; i++) {
+		Edge* edgePtr = (Edge*)getElement(&graph->Edges, i);
+
+		free(edgePtr->VertexA);
+		free(edgePtr->VertexB);
+	}
+
 	freeList(&graph->Edges);
 	freeList(&graph->Vertices);
 	memset(graph, 0, GRAPH_SIZE);
