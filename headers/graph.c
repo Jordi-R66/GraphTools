@@ -78,7 +78,7 @@ void fillGraph(Graph* graph) {
 }
 
 void deallocGraph(Graph* graph) {
-	for (SizeT i=0; i < &graph->Edges.n_elements; i++) {
+	for (SizeT i=0; i < graph->Edges.n_elements; i++) {
 		Edge* edgePtr = (Edge*)getElement(&graph->Edges, i);
 
 		free(edgePtr->VertexA);
