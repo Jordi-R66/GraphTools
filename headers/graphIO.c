@@ -147,7 +147,7 @@ void LoadEdgesFromTSV(string filename, Graph* graph, FileType fileType) {
 					break;
 
 				case TYPE:
-					edge.directed = strtol(buffer, &endptr, 10) == 2 ? true : false;
+					edge.directed = strtol(buffer, &endptr, 10) == 2 ? false : true;
 					canLoad = true;
 					break;
 
