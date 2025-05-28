@@ -1,7 +1,8 @@
 #pragma once
 
-#include "../libs/myOwnCLib/targetSpecific/macros.h"
+#define INCLUDE_TARGET_SPECIFIC
+#define INCLUDE_LISTS
+#define INCLUDE_BOOLS
+#define INCLUDE_BITS
 
-#include "../libs/myOwnCLib/lists/list.h"
-#include "../libs/myOwnCLib/bits/bits.h"
-
+#include "../libs/myOwnCLib/myOwnCLib.h"
