@@ -1,7 +1,6 @@
 #include "headers/graph.h"
+#include "headers/representations.h"
 #include "headers/graphIO.h"
-
-#include <stdio.h>
 
 void main() {
 	Graph graph = parseFile("exemple_s.tsv", "exemple_l.tsv", TSV);
@@ -22,6 +21,12 @@ void main() {
 	}
 
 	printf(")\n");
+
+	Matrix adjMatrix = adjacencyMatrix(&graph);
+
+	printf("adjMatrix : \n");
+	printMatrix(&adjMatrix);
+	deallocMatrix(&adjMatrix);
 
 	deallocGraph(&graph);
 }
