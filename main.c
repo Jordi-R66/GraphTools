@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 void main() {
-	Graph graph = parseFile("France_s.tsv", "France_l.tsv", TSV);
+	Graph graph = parseFile("exemple_s.tsv", "exemple_l.tsv", TSV);
 
 	printf("n = %zu\nm = %zu\n", graph.Vertices.n_elements, graph.Edges.n_elements);
 	List degSeq = degreeSequence(&graph);
